@@ -231,12 +231,18 @@
     <script>
       (function () {
         var params = new URLSearchParams(window.location.search);
+        var sid = params.get("sid") || "";
         var payload = params.get("payload") || "";
         var shareId = params.get("shareId") || "";
         var nonce = params.get("nonce") || "";
+        var source = params.get("src") || "";
+        var version = params.get("v") || "";
 
         var appUrl = "simduty://loads/import";
         var qp = [];
+        if (sid) {
+          qp.push("sid=" + encodeURIComponent(sid));
+        }
         if (payload) {
           qp.push("payload=" + encodeURIComponent(payload));
         }
@@ -245,6 +251,12 @@
         }
         if (nonce) {
           qp.push("nonce=" + encodeURIComponent(nonce));
+        }
+        if (source) {
+          qp.push("src=" + encodeURIComponent(source));
+        }
+        if (version) {
+          qp.push("v=" + encodeURIComponent(version));
         }
         if (qp.length > 0) {
           appUrl += "?" + qp.join("&");
