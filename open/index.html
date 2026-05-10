@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050505" />
+    <title>Open in SimDuty</title>
+    <meta
+      name="description"
+      content="Open shared SimDuty loads in the desktop app with one click."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-deep: #050505;
+        --bg-surface: #141414;
+        --bg-card: #1a1a1a;
+        --border-generic: #333333;
+        --border-accent: #00e5ff;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --text-muted: #888888;
+        --accent-primary: #00e5ff;
+        --accent-active: #ffc107;
+        --radius-lg: 16px;
+        --radius-md: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: var(--text-primary);
+        background:
+          radial-gradient(circle at 80% -10%, rgba(0, 229, 255, 0.14), transparent 45%),
+          radial-gradient(circle at 20% 110%, rgba(255, 193, 7, 0.1), transparent 40%),
+          linear-gradient(180deg, #0a0a0a 0%, var(--bg-deep) 100%);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .shell {
+        width: min(760px, 100%);
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        color: var(--accent-primary);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        background: rgba(0, 229, 255, 0.07);
+      }
+
+      .card {
+        margin-top: 14px;
+        border: 1px solid var(--border-generic);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-surface) 100%);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.44);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+      }
+
+      p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .status {
+        margin-top: 18px;
+        border: 1px solid var(--border-generic);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.01);
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-primary);
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent-active);
+        box-shadow: 0 0 14px rgba(255, 193, 7, 0.65);
+        animation: pulse 1.2s infinite;
+      }
+
+      .actions {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        padding: 11px 18px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      }
+
+      .btn-primary {
+        background: var(--accent-primary);
+        color: #001116;
+        box-shadow: 0 0 22px rgba(0, 229, 255, 0.28);
+      }
+
+      .btn-secondary {
+        border: 1px solid #4a4a4a;
+        background: transparent;
+        color: var(--text-primary);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .meta {
+        margin-top: 18px;
+        font-family: "Roboto Mono", ui-monospace, monospace;
+        color: var(--text-muted);
+        font-size: 12px;
+        word-break: break-all;
+      }
+
+      .help {
+        margin-top: 20px;
+        border-top: 1px solid #2a2a2a;
+        padding-top: 16px;
+      }
+
+      .help h2 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .help ol {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--text-secondary);
+      }
+
+      .help li {
+        margin: 5px 0;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.55; }
+        100% { opacity: 1; }
+      }
+
+      @media (max-width: 560px) {
+        .card {
+          padding: 20px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <span class="chip">SimDuty Share</span>
+      <section class="card">
+        <h1>Opening your shared load in SimDuty</h1>
+        <p>
+          We are trying to open the SimDuty desktop app now. If nothing happens, use the button below.
+        </p>
+
+        <div class="status" role="status" aria-live="polite">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="status-text">Trying to open SimDuty protocol...</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" id="open-btn" href="#">Open in SimDuty</a>
+          <a class="btn btn-secondary" href="https://www.simduty.com/" target="_blank" rel="noopener">Get SimDuty</a>
+        </div>
+
+        <p class="meta" id="link-preview"></p>
+
+        <section class="help">
+          <h2>If SimDuty did not open</h2>
+          <ol>
+            <li>Install or update SimDuty desktop on Windows.</li>
+            <li>Allow your browser to open external app links.</li>
+            <li>Click "Open in SimDuty" again.</li>
+          </ol>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var payload = params.get("payload") || "";
+        var shareId = params.get("shareId") || "";
+        var nonce = params.get("nonce") || "";
+
+        var appUrl = "simduty://loads/import";
+        var qp = [];
+        if (payload) {
+          qp.push("payload=" + encodeURIComponent(payload));
+        }
+        if (shareId) {
+          qp.push("shareId=" + encodeURIComponent(shareId));
+        }
+        if (nonce) {
+          qp.push("nonce=" + encodeURIComponent(nonce));
+        }
+        if (qp.length > 0) {
+          appUrl += "?" + qp.join("&");
+        }
+
+        var status = document.getElementById("status-text");
+        var preview = document.getElementById("link-preview");
+        var openBtn = document.getElementById("open-btn");
+
+        openBtn.setAttribute("href", appUrl);
+        preview.textContent = "Deep link: " + appUrl;
+
+        var hiddenAt = 0;
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "hidden") {
+            hiddenAt = Date.now();
+          }
+        });
+
+        function tryOpen() {
+          window.location.href = appUrl;
+
+          setTimeout(function () {
+            var likelyOpened = hiddenAt > 0;
+            if (likelyOpened) {
+              status.textContent = "SimDuty app opened. You can return here anytime.";
+              return;
+            }
+
+            status.textContent = "Could not open automatically. Use the button above to try again.";
+          }, 1600);
+        }
+
+        openBtn.addEventListener("click", function () {
+          status.textContent = "Trying again...";
+        });
+
+        tryOpen();
+      })();
+    </script>
+  </body>
+</html>
