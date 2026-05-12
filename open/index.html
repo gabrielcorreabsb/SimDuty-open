@@ -232,6 +232,7 @@
       (function () {
         var params = new URLSearchParams(window.location.search);
         var sid = params.get("sid") || "";
+        var sdc = params.get("sdc") || "";
         var payload = params.get("payload") || "";
         var shareId = params.get("shareId") || "";
         var nonce = params.get("nonce") || "";
@@ -242,6 +243,9 @@
         var qp = [];
         if (sid) {
           qp.push("sid=" + encodeURIComponent(sid));
+        }
+        if (sdc) {
+          qp.push("sdc=" + encodeURIComponent(sdc));
         }
         if (payload) {
           qp.push("payload=" + encodeURIComponent(payload));
